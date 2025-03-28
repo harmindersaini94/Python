@@ -33,3 +33,4 @@ myCar3.getFullName()
 
 myCar4 = ElectricCar("Ford", "Escape", "1kwh")
 myCar4.getFullName()
+myCar4.getFullName2()
