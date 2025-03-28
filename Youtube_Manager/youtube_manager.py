@@ -10,12 +10,16 @@ def LoadVideos():
         return []
 
 def ListAllVideo(videos):
-    #print(videos)
+    print("*"*50)
+    print("\nList of all the videos\n")
     if videos:
         for index, video in enumerate(videos, start=1):
             print(f"{index}. {video['video']} - {video['duration']}")
+
+        print("\n")
     else:
-        print("No videos found")
+        print("No videos found\n")
+    print("*"*50)
 
 
 def AddVideo(video):
@@ -39,45 +43,60 @@ def main():
             "5. Exit the App\n"
         )
         user_input = int(input("Enter the task number: "))
-        print(f"User input: {user_input}")
+        if 1 <= user_input <= 5:
+            print(f"User input: {user_input} \n")
 
-        all_videos = LoadVideos()
+            all_videos = LoadVideos()
 
-        match user_input:
-            case 1:
-                ListAllVideo(all_videos)
-            case 2:
-                video = input("Enter the video name: ")
-                duration = input("Enter the video duration: ")
-                # Remember pass a list of dictionary to the AddVideo function
-                all_videos.append({'video': video, 'duration': duration})
-                AddVideo(all_videos)
+            match user_input:
+                case 1:
+                    ListAllVideo(all_videos)
+                case 2:
+                    video = input("Enter the video name: ")
+                    duration = input("Enter the video duration: ")
+                    # Remember pass a list of dictionary to the AddVideo function
+                    all_videos.append({'video': video, 'duration': duration})
+                    AddVideo(all_videos)
 
-                print("Video added successfully")
-            case 3:
-                ListAllVideo(all_videos)
-                video_index = int(input("Enter the video index to update: "))
-                video = input("Enter the new video name: ")
-                duration = input("Enter the video duration: ")
+                    print("Video added successfully\n")
+                case 3:
+                    ListAllVideo(all_videos)
+                    video_index = int(input("Enter the video index to update: "))
 
-                all_videos[video_index-1] = {'video': video, 'duration': duration}
-                AddVideo(all_videos)
+                    if 1 <= video_index <= len(all_videos):
+                        video = input("Enter the new video name: ")
+                        duration = input("Enter the video duration: ")
+                        print("\n")
 
-                print("Video Updated successfully")
-            case 4:
-                ListAllVideo(all_videos)
-                video_index = int(input("Enter the video index to delete: "))
-                # dont' use pop here, will get exception
-                # dont use this as well, all_videos[video_index-1] = {}, this also give exception
-                del all_videos[video_index-1]
-                AddVideo(all_videos)
+                        all_videos[video_index-1] = {'video': video, 'duration': duration}
+                        AddVideo(all_videos)
 
-                print("Video Deleted successfully")
-            case 5:
-                exit()
-            case _:
-                print("Invalid input\n")
-                exit()
+                        print("Video Updated successfully\n")
+                    else:
+                        print("Invalid video index\n")
+                        exit()
+                case 4:
+                    ListAllVideo(all_videos)
+                    video_index = int(input("Enter the video index to delete: "))
+                    if 1 <= video_index <= len(all_videos):
+                        # dont' use pop here, will get exception
+                        # dont use this as well, all_videos[video_index-1] = {}, this also give exception
+                        print("\n")
+                        del all_videos[video_index-1]
+                        AddVideo(all_videos)
+
+                        print("Video Deleted successfully\n")
+                    else:
+                        print("Invalid video index\n")
+                        exit()
+                case 5:
+                    exit()
+                case _:
+                    print("Invalid input\n")
+                    exit()
+        else:
+            print("Invalid input\n")
+            exit()
 
 if __name__ == "__main__":
     main()

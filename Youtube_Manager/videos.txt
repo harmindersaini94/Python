@@ -1,1 +1,1 @@
-[{"video": "Python in Hindi", "duration": "14 hours"}, {"video": "React in Hindi", "duration": "18 hours"}]
+[{"video": "Python Basics in Hindi", "duration": "14.5 hours"}, {"video": "React in Hindi", "duration": "18 hours"}]
