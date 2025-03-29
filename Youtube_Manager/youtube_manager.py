@@ -13,6 +13,7 @@ def ListAllVideo(videos):
     print("*"*50)
     print("\nList of all the videos\n")
     if videos:
+        # enumerate kya krta hai ki list me explicitly index daal deta hai
         for index, video in enumerate(videos, start=1):
             print(f"{index}. {video['video']} - {video['duration']}")
 
@@ -23,6 +24,7 @@ def ListAllVideo(videos):
 
 
 def AddVideo(video):
+    # File Mode w so that it create a new file if we dont have any
     with open("videos.txt", "w") as file:
         json.dump(video, file)
 
